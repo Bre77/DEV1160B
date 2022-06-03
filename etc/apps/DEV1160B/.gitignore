@@ -1,0 +1,4 @@
+local/
+local.meta
+__pycache__
+*.pyc

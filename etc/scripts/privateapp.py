@@ -3,22 +3,21 @@ import sys
 import time
 from splunkcreds import username, password, authtoken, stack, acs
 
-
+# Get Splunkbase Auth Token
 login = requests.get("https://api.splunk.com/2.0/rest/login/splunk", auth=(username, password))
 token = login.json()['data']['token']
 app = sys.argv[1]
 print(app)
 
-TAGS = ['cloud','private','self-service','future']
-
 if "/" not in app:
     app = f"/opt/splunk/etc/build/{app}.spl"
 
-files = {
-    'app_package': open(app, 'rb')
-}
 
-upload = requests.post("https://appinspect.splunk.com/v1/app/validate", files=files, headers={"Authorization": f"Bearer {token}"})
+
+upload = requests.post("https://appinspect.splunk.com/v1/app/validate", files={
+    'app_package': open(app, 'rb'),
+    'included_tags': (None,'private_app')
+}, headers={"Authorization": f"Bearer {token}"})
 print(upload.json())
 rid = upload.json()['request_id']
 
@@ -39,11 +38,16 @@ data = result.json()
 print(data["summary"])
 print("")
 
-for tag in TAGS:
-    print(tag)
+if(data["summary"]["failure"] == 0 and data["summary"]["error"] == 0 and data["summary"]["manual_check"] == 0):
+    upload = requests.post(f"https://{acs}/{stack}/adminconfig/v2/apps/victoria", data=open(app, 'rb'), headers={
+        "X-Splunk-Authorization": token,
+        "Authorization": f"Bearer {authtoken}",
+        "ACS-Legal-Ack": "Y"
+    })
+    print(upload.json())
+else:
     for report in data['reports']:
         for group in report['groups']:
             for check in group['checks']:
-                if check['result'] in ["error","failure","manual_check","warning"] and tag in check['tags']:
-                    print(check['messages'])
-    print("")        
+                if check['result'] in ["error","failure","manual_check","warning"]:
+                    print(check['messages'])      
