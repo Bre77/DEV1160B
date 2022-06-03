@@ -1,7 +1,6 @@
 import requests
 import sys
-import time
-from splunkcreds import username, password, authtoken, stack, acs
+from splunkcreds import username, password
 
 app = sys.argv[1]
 

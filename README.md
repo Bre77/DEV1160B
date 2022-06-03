@@ -11,6 +11,15 @@ You can register for this talk at https://conf.splunk.com/sessions.html?search=D
 ### package.sh
 This script requires BASH 4.0 or newer, as it uses the **globstar** option.
 You can check you have globstar by running `shopt | grep globstar`
+
 ### appinspect.py
-This file requires you to hard code your Splunkbase (splunk.com) credentials on line 4.
-> auth=('### SPLUNKBASE USERNAME ###', '### SPLUNKBASE PASSWORD ###')
+This script requires your Splunkbase (splunk.com) credentials be added to splunkcreds.py
+
+### privateapp.py
+This script requires your Splunkbase (splunk.com) credentials, and the Splunk stack with auth token be added to splunkcreds.py
+
+### upload.py
+This script requires your Splunkbase (splunk.com) credentials be added to splunkcreds.py, and for the app to include a .splunkbase file that has the numerical app ID.
+
+### updatelibs.py
+This script uses the pip.txt file inside an app's lib/ directory to handle python dependencies updates in bulk.
