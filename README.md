@@ -23,3 +23,9 @@ This script requires your Splunkbase (splunk.com) credentials be added to splunk
 
 ### updatelibs.py
 This script uses the pip.txt file inside an app's lib/ directory to handle python dependencies updates in bulk.
+
+## config_explorer.conf
+All the hooks are defined in /etc/apps/DEV1160B/local/config_explorer.conf, which you can either copy into your Config Explorer settings, or install as a seperate app.
+
+## .gitignore
+The example .gitignore file can be found at etc/apps/DEV1160B/.gitignore, and should be in the same directory as your .git repo.
