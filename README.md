@@ -4,7 +4,7 @@ Download [**Config Explorer**](https://splunkbase.splunk.com/app/4353/) by [Chri
 # DEV1160B
 This repository contains the configuration and scripts presented at Splunk .conf22.
 
-You can register for this talk at [.conf Online - DEV1160B](https://conf.splunk.com/watch/conf-online.html?search=DEV1160B&search.event=conf22&locale=watch#/)
+You watch the presentation at [.conf Online - DEV1160B](https://conf.splunk.com/watch/conf-online.html?search=DEV1160B&search.event=conf22&locale=watch#/) or directly [here](https://conf.splunk.com/files/2022/recordings/DEV1160B_1080.mp4).
 
 ## Scripts
 
